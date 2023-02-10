@@ -17,6 +17,16 @@ async def start_bot(message: types.Message):
                   'JobName': 'None'})
     await bot.send_message(message.from_user.id, text=f"Ты большой молодец. Ты СТАРТ нажал.")
 
+async def help_message(message: types.Message):
+    await bot.send_message(message.from_user.id, 
+                        text=f"Бот будет ходить на Куфар каждую минуту и искать новые обьявления по мере из появления.\n\n\
+                            Команды бота:\n\
+                            /start - ну понятно что делает.\n\
+                            /help - инструкцию выдает.\n\
+                            /set_search - тут мы вводим слова по которым бот будет следить.\n\
+                            /go_search - это начинает отслеживание.\n\
+                            /stop_search - останавливает отслеживание.")
+
 async def set_search(message: types.Message):
     await bot.send_message(message.from_user.id, f"Введи название товара для поиска:")
     await Search.search_word.set()
@@ -110,6 +120,7 @@ async def search_stop(message: types.Message):
 
 def register_handlers_start(dp: Dispatcher):
     dp.register_message_handler(start_bot, Command('start'))
+    dp.register_message_handler(help_message, Command('help'))
     dp.register_message_handler(set_search, Command('set_search'))
     dp.register_message_handler(input_word, state=Search.search_word)
     dp.register_message_handler(search_go, Command('go_search'))
