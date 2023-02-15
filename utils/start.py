@@ -118,7 +118,6 @@ async def send_message_prod(mess_bd):
             old_url = all_table[index]['fields']['UrlProd']
             s_word = all_table[index]['fields']['SearchWord']
             new_url = str(get_url(s_word))
-            print(new_url)
             for index in range(len(all_table)):
                 if all_table[index]['fields']['UserTGID'] == str(tg_id) \
                     and all_table[index]['fields']['UrlProd'] != new_url:
@@ -131,7 +130,7 @@ async def send_message_prod(mess_bd):
                     table.update(record_id=str(record_id), fields={'PriceProd': str(price)})
                     await bot.send_message(int(tg_id), text=f'Ссылка на товар - {urla}\nЦена - {price}')
                 else:
-                    print('Новых товаров нет')
+                    print(f'Нет новых товаров для - {tg_id}')
 
 
 async def search_stop(message: types.Message):
