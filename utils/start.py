@@ -148,6 +148,13 @@ async def search_stop(message: types.Message):
                 pass
             
 
+async def message_for_all(message: types.Message):
+    all_table = table.all()
+    for index in range(len(all_table)):
+        id_tg = all_table[index]['fields']['UserTGID']
+        await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
+Из-за этого все активные отслеживания были остановленны.\n\n\
+Для их перезапуска используйте команду /go_search')
 
 
 def register_handlers_start(dp: Dispatcher):
@@ -158,3 +165,4 @@ def register_handlers_start(dp: Dispatcher):
     dp.register_message_handler(search_go, Command('go_search'))
     dp.register_message_handler(send_message_prod, commands=['40000_monkeys_put_a_banana_up_their_butt'])
     dp.register_message_handler(search_stop, Command('stop_search'))
+    dp.register_message_handler(message_for_all, Command('1786314send_all_user'))
