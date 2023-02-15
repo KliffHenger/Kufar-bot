@@ -4,7 +4,7 @@ from utils import start
 
 
 async def on_startup(_):
-    print('Ilya! Everything started, but that does not mean anything.')
+    print('Everything started, but that does not mean anything.')
  
 
 """Регистрация всех месадж-хэндлеров"""

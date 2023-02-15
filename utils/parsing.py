@@ -42,8 +42,13 @@ def get_price(keyword):
     URL_TEMPLATE = f'https://www.kufar.by/l/r~gomel?cmp=0&ot=1&query={keyword}&sort=lst.d'
     r = requests.get(URL_TEMPLATE)
     soup = bs(r.text, "html.parser")
-    find_price = soup.find('p', class_='styles_price__tiO8k').select('span')
-    y = find_price[0].text
+    try:
+        find_price = soup.find('p', class_='styles_price__tiO8k').select('span')
+        y = find_price[0].text
+        return y
+    except:
+        pass
+    
     # print(y)
-    return y
+    
 
