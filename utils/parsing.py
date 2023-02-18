@@ -1,14 +1,11 @@
 import requests
 from bs4 import BeautifulSoup as bs
+from airtable_config import table
 
 
 
 
 
-# https://www.kufar.by/l/r~gomel
-# https://www.kufar.by/l/r~gomel?ot=1&query=%D1%81%D1%82%D0%B8%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%B0&utm_queryOrigin=Manually_typed
-# URL_TEMPLATE = "https://www.kufar.by/l/r~gomel?cmp=0&sort=lst.d"
-# URL_TEMPLATE = f'https://www.kufar.by/l/r~gomel?cmp=0&ot=1&query={keyword}&sort=lst.d'
 
 def urlify(s):
     s = s.strip().split(" ")
@@ -20,16 +17,10 @@ def urlify(s):
 def get_url(keyword):
     try:
         URL_TEMPLATE = f'https://www.kufar.by/l/r~gomel?cmp=0&ot=1&query={keyword}&sort=lst.d'
-        # print(URL_TEMPLATE)
         r = requests.get(URL_TEMPLATE)
         soup = bs(r.text, "html.parser")
-        # find_href = soup.find_all('section')
         find_href = soup.find('section')# .select('a', class_='styles_wrapper__IMYdY')
         x = find_href.a['href']
-        # for item in find_href:
-        #     x = item.a['href']
-        #     break
-        # print(x)
         return x
     except:
         pass
@@ -49,6 +40,6 @@ def get_price(keyword):
     except:
         pass
     
-    # print(y)
+
     
 

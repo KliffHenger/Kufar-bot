@@ -21,6 +21,7 @@ async def start_bot(message: types.Message):
         table.create({'UserName': str(message.from_user.first_name),
                       'UserTGID': str(message.from_user.id),
                       'SearchWord': 'None',
+                      'Region': 'None',
                       'UrlProd': 'None',
                       'PriceProd': 'None',
                       'JobName': 'None'})
@@ -37,6 +38,8 @@ async def help_message(message: types.Message):
 /go_search - это начинает отслеживание.\n\
 /stop_search - останавливает отслеживание.")
 
+
+@dp.callback_query_handler(text='set_word')
 async def set_search(message: types.Message):
     ''' тут мы на всякий случай останавливаем планировщик'''
     all_table = table.all()
@@ -49,6 +52,21 @@ async def set_search(message: types.Message):
                 pass
     await bot.send_message(message.from_user.id, f"Введи название товара (напр. - стиральная машина) для отслеживания:")
     await Search.search_word.set()
+
+
+async def set_search(message: types.Message):
+    ''' тут мы на всякий случай останавливаем планировщик'''
+    all_table = table.all()
+    for index in range(len(all_table)):
+        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+            try:
+                job_name = all_table[index]['fields']['JobName']
+                globals()[job_name].shutdown(wait=False) # отключение планировщика
+            except:
+                pass
+    await bot.send_message(message.from_user.id, f"Введи название товара (напр. - стиральная машина) для отслеживания:")
+    await Search.search_word.set()
+
 
 async def input_word(message: types.Message, state=FSMContext):
     word = str(message.text)
@@ -64,7 +82,51 @@ async def input_word(message: types.Message, state=FSMContext):
             await bot.send_message(message.from_user.id, 
                     text=f'Вы ввели "{word}" и мы это сохранили.\nВведите команду /go_search , чтобы начать отслеживание.')
             await state.finish()
-            
+
+@dp.callback_query_handler(text='start_search')
+async def search_go(message: types.Message):
+    all_table = table.all()
+    for index in range(len(all_table)):
+        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+            try:
+                job_name = all_table[index]['fields']['JobName']
+                globals()[job_name].shutdown(wait=False) # отключение планировщика
+            except:
+                pass
+    global record_id
+    global tg_id
+    tg_id, record_id = '', ''
+    tg_id = str(message.from_user.id)
+    for index in range(len(all_table)):
+        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+            old_url = all_table[index]['fields']['UrlProd']
+            s_word = all_table[index]['fields']['SearchWord']
+            for index in range(len(all_table)):
+                if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+                    record_id = all_table[index]['id']
+
+                    name_sched = 'sched'+str(message.from_user.id)
+                    globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
+                    
+                    urla = str(get_url(s_word))
+                    price = str(get_price(s_word))
+                    table.update(record_id=str(record_id), fields={'UrlProd': urla})
+                    table.update(record_id=str(record_id), fields={'PriceProd': price})
+                    table.update(record_id=str(record_id), fields={'JobName': name_sched})
+                    if price == 'None':
+                        await bot.send_message(int(tg_id), text=f'По Вашему запросу "{s_word}" объявлений НЕ НАЙДЕНО.\n\n\
+Используйте команду /set_search - чтобы изменить запрос.')
+                    elif price != 'None':
+                        await bot.send_message(int(tg_id), text=f'Первый найденый товар - {urla}\nЦена - {price}\nКогда появится еще, то придёт сообщение.')
+                        print(name_sched)
+                        mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
+                        print(mess_bd)
+                        globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, 
+                                                      kwargs={'mess_bd': mess_bd}, misfire_grace_time=3)
+                        globals()[name_sched].start()
+                        globals()[name_sched].print_jobs()
+
+
 async def search_go(message: types.Message):
     all_table = table.all()
     for index in range(len(all_table)):
