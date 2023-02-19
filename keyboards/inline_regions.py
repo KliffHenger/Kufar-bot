@@ -1,6 +1,9 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
+
+
+
 '''кнопки предвыбора региона'''
 BTN_all_minsk = InlineKeyboardButton(text='Минск', callback_data='ves_minsk')
 BTN_all_brestskaya = InlineKeyboardButton(text='Брестская обл.', callback_data='vsa_brestskaya')
@@ -178,58 +181,46 @@ BTN_set_cherven = InlineKeyboardButton(text='Червень', callback_data='che
 BTN_set_minskaya_obl_drugie = InlineKeyboardButton(text='Другие города', callback_data='minskaya-obl-drugie')
 
 
-REGIONS = InlineKeyboardMarkup().add(BTN_set_belarus).add(BTN_all_minsk).add(BTN_all_brestskaya)\
-                                .add(BTN_all_vitebskaya).add(BTN_all_gomelskaya).add(BTN_all_grodnenskaya)\
-                                .add(BTN_all_mogilevskaya).add(BTN_all_minskaya)
 
-MINSK = InlineKeyboardMarkup().add(BTN_set_minsk).add(BTN_set_minsk_centralnyj).add(BTN_set_minsk_sovetskij)\
-                                .add(BTN_set_mins_pervomajskij).add(BTN_set_minsk_partizanskij).add(BTN_set_minsk_zavodskoj)\
-                                .add(BTN_set_minsk_leninskij).add(BTN_set_minsk_oktyabrskij).add(BTN_set_minsk_moskovskij)\
-                                .add(BTN_set_minsk_frunzenskij)
+REGIONS = InlineKeyboardMarkup().add(BTN_set_belarus, BTN_all_minsk).add(BTN_all_brestskaya, BTN_all_vitebskaya)\
+    .add(BTN_all_gomelskaya, BTN_all_grodnenskaya).add(BTN_all_mogilevskaya, BTN_all_minskaya)
 
-BRESTSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_brestskaya_obl).add(BTN_set_brest).add(BTN_set_baranovichi)\
-                                        .add(BTN_set_bereza).add(BTN_set_beloozersk).add(BTN_set_vysokae).add(BTN_set_gancevichi)\
-                                        .add(BTN_set_davyd_haradok).add(BTN_set_drogichin).add(BTN_set_zhabinka)\
-                                        .add(BTN_set_ivanovo).add(BTN_set_ivacevichi).add(BTN_set_kamenec).add(BTN_set_kobrin)\
-                                        .add(BTN_set_luninec).add(BTN_set_lyahovichi).add(BTN_set_malorita).add(BTN_set_mikashevichy)\
-                                        .add(BTN_set_pinsk).add(BTN_set_pruzhany).add(BTN_set_stolin).add(BTN_set_brestskaya_obl_drugie)
+MINSK = InlineKeyboardMarkup().add(BTN_set_minsk).add(BTN_set_minsk_centralnyj, BTN_set_minsk_sovetskij)\
+    .add(BTN_set_mins_pervomajskij, BTN_set_minsk_partizanskij).add(BTN_set_minsk_zavodskoj, BTN_set_minsk_leninskij)\
+    .add(BTN_set_minsk_oktyabrskij, BTN_set_minsk_moskovskij).add(BTN_set_minsk_frunzenskij)
 
-VITEBSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_vitebskaya_obl).add(BTN_set_vitebsk).add(BTN_set_beshenkovichi)\
-                                        .add(BTN_set_baran).add(BTN_set_braslav).add(BTN_set_verhnedvinsk).add(BTN_set_glubokoe)\
-                                        .add(BTN_set_gorodok).add(BTN_set_dubrovno).add(BTN_set_lepel).add(BTN_set_liozno)\
-                                        .add(BTN_set_miory).add(BTN_set_novolukoml).add(BTN_set_novopolock).add(BTN_set_orsha)\
-                                        .add(BTN_set_polock).add(BTN_set_postavy).add(BTN_set_rossony).add(BTN_set_senno)\
-                                        .add(BTN_set_tolochin).add(BTN_set_ushachi).add(BTN_set_chashniki).add(BTN_set_sharkovshchina)\
-                                        .add(BTN_set_shumilino).add(BTN_set_vitebskaya_obl_drugie)
+BRESTSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_brestskaya_obl, BTN_set_brest).add(BTN_set_baranovichi, BTN_set_bereza)\
+    .add(BTN_set_beloozersk, BTN_set_vysokae).add(BTN_set_gancevichi, BTN_set_davyd_haradok).add(BTN_set_drogichin, BTN_set_zhabinka)\
+    .add(BTN_set_ivanovo, BTN_set_ivacevichi).add(BTN_set_kamenec, BTN_set_kobrin).add(BTN_set_luninec, BTN_set_lyahovichi)\
+    .add(BTN_set_malorita, BTN_set_mikashevichy).add(BTN_set_pinsk, BTN_set_pruzhany).add(BTN_set_stolin, BTN_set_brestskaya_obl_drugie)
 
-GOMELSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_gomelskaya_obl).add(BTN_set_gomel).add(BTN_set_bragin).add(BTN_set_buda_koshelevo)\
-                                        .add(BTN_set_vasilevichy).add(BTN_set_vetka).add(BTN_set_dobrush).add(BTN_set_elsk)\
-                                        .add(BTN_set_zhitkovichi).add(BTN_set_zhlobin).add(BTN_set_kalinkovichi).add(BTN_set_korma)\
-                                        .add(BTN_set_lelchicy).add(BTN_set_loev).add(BTN_set_mozyr).add(BTN_set_oktyabrskij)\
-                                        .add(BTN_set_narovlya).add(BTN_set_petrikov).add(BTN_set_rechica).add(BTN_set_rogachev)\
-                                        .add(BTN_set_svetlogorsk).add(BTN_set_hojniki).add(BTN_set_chechersk)\
-                                        .add(BTN_set_gomelskaya_obl_drugie)
+VITEBSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_vitebskaya_obl, BTN_set_vitebsk).add(BTN_set_beshenkovichi, BTN_set_baran)\
+    .add(BTN_set_braslav, BTN_set_verhnedvinsk).add(BTN_set_glubokoe, BTN_set_gorodok).add(BTN_set_dubrovno, BTN_set_lepel)\
+    .add(BTN_set_liozno, BTN_set_miory).add(BTN_set_novolukoml, BTN_set_novopolock).add(BTN_set_orsha, BTN_set_polock)\
+    .add(BTN_set_postavy, BTN_set_rossony).add(BTN_set_senno, BTN_set_tolochin).add(BTN_set_ushachi, BTN_set_chashniki)\
+    .add(BTN_set_sharkovshchina, BTN_set_shumilino).add(BTN_set_vitebskaya_obl_drugie)
 
-GRODNENSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_grodnenskaya_obl).add(BTN_set_grodno).add(BTN_set_berezovka)\
-                                        .add(BTN_set_berestovica).add(BTN_set_volkovysk).add(BTN_set_voronovo).add(BTN_set_dyatlovo)\
-                                        .add(BTN_set_zelva).add(BTN_set_ivie).add(BTN_set_korelichi).add(BTN_set_lida)\
-                                        .add(BTN_set_mosty).add(BTN_set_novogrudok).add(BTN_set_ostrovec).add(BTN_set_oshmyany)\
-                                        .add(BTN_set_svisloch).add(BTN_set_skidel).add(BTN_set_slonim).add(BTN_set_smorgon)\
-                                        .add(BTN_set_shchuchin).add(BTN_set_grodnenskaya_obl_drugie)
-                    
-MINSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_minskaya_obl).add(BTN_set_minsk).add(BTN_set_minskij_rajon).add(BTN_set_berezino)\
-                                    .add(BTN_set_borisov).add(BTN_set_vilejka).add(BTN_set_volozhin).add(BTN_set_dzerzhinsk)\
-                                    .add(BTN_set_zhodino).add(BTN_set_zaslavl).add(BTN_set_kleck).add(BTN_set_kopyl)\
-                                    .add(BTN_set_krupki).add(BTN_set_logojsk).add(BTN_set_lyuban).add(BTN_set_marina_gorka)\
-                                    .add(BTN_set_molodechno).add(BTN_set_myadel).add(BTN_set_nesvizh).add(BTN_set_rudensk)\
-                                    .add(BTN_set_sluck).add(BTN_set_smolevichi).add(BTN_set_soligorsk).add(BTN_set_starye_dorogi)\
-                                    .add(BTN_set_stolbcy).add(BTN_set_uzda).add(BTN_set_fanipol).add(BTN_set_cherven)\
-                                    .add(BTN_set_minskaya_obl_drugie)
+GOMELSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_gomelskaya_obl, BTN_set_gomel).add(BTN_set_bragin, BTN_set_buda_koshelevo)\
+    .add(BTN_set_vasilevichy, BTN_set_vetka).add(BTN_set_dobrush, BTN_set_elsk).add(BTN_set_zhitkovichi, BTN_set_zhlobin)\
+    .add(BTN_set_kalinkovichi, BTN_set_korma).add(BTN_set_lelchicy, BTN_set_loev).add(BTN_set_mozyr, BTN_set_oktyabrskij)\
+    .add(BTN_set_narovlya, BTN_set_petrikov).add(BTN_set_rechica, BTN_set_rogachev).add(BTN_set_svetlogorsk, BTN_set_hojniki)\
+    .add(BTN_set_chechersk, BTN_set_gomelskaya_obl_drugie)
 
-MOGILEVSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_mogilevskaya_obl).add(BTN_set_mogilev).add(BTN_set_belynichi)\
-                                        .add(BTN_set_bobrujsk).add(BTN_set_byhov).add(BTN_set_glusk).add(BTN_set_gorki)\
-                                        .add(BTN_set_dribin).add(BTN_set_kirovsk).add(BTN_set_klimovichi).add(BTN_set_klichev)\
-                                        .add(BTN_set_krasnopole).add(BTN_set_krugloe).add(BTN_set_kostyukovichi).add(BTN_set_krichev)\
-                                        .add(BTN_set_mstislavl).add(BTN_set_osipovichi).add(BTN_set_slavgorod).add(BTN_set_chausy)\
-                                        .add(BTN_set_cherikov).add(BTN_set_shklov).add(BTN_set_hotimsk)\
-                                        .add(BTN_set_mogilevskaya_obl_drugie)
+GRODNENSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_grodnenskaya_obl, BTN_set_grodno).add(BTN_set_berezovka, BTN_set_berestovica)\
+    .add(BTN_set_volkovysk, BTN_set_voronovo).add(BTN_set_dyatlovo, BTN_set_zelva).add(BTN_set_ivie, BTN_set_korelichi)\
+    .add(BTN_set_lida, BTN_set_mosty).add(BTN_set_novogrudok, BTN_set_ostrovec).add(BTN_set_oshmyany, BTN_set_svisloch)\
+    .add(BTN_set_skidel, BTN_set_slonim).add(BTN_set_smorgon, BTN_set_shchuchin).add(BTN_set_grodnenskaya_obl_drugie)
+
+MINSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_minskaya_obl, BTN_set_minsk).add(BTN_set_minskij_rajon, BTN_set_berezino)\
+    .add(BTN_set_borisov, BTN_set_vilejka).add(BTN_set_volozhin, BTN_set_dzerzhinsk).add(BTN_set_zhodino, BTN_set_zaslavl)\
+    .add(BTN_set_kleck, BTN_set_kopyl).add(BTN_set_krupki, BTN_set_logojsk).add(BTN_set_lyuban, BTN_set_marina_gorka)\
+    .add(BTN_set_molodechno, BTN_set_myadel).add(BTN_set_nesvizh, BTN_set_rudensk).add(BTN_set_sluck, BTN_set_smolevichi)\
+    .add(BTN_set_soligorsk, BTN_set_starye_dorogi).add(BTN_set_stolbcy, BTN_set_uzda).add(BTN_set_fanipol, BTN_set_cherven)\
+    .add(BTN_set_minskaya_obl_drugie)
+
+MOGILEVSKAYA_OBL = InlineKeyboardMarkup().add(BTN_set_mogilevskaya_obl, BTN_set_mogilev).add(BTN_set_belynichi,BTN_set_bobrujsk)\
+    .add(BTN_set_byhov, BTN_set_glusk).add(BTN_set_gorki, BTN_set_dribin).add(BTN_set_kirovsk, BTN_set_klimovichi)\
+    .add(BTN_set_klichev, BTN_set_krasnopole).add(BTN_set_krugloe, BTN_set_kostyukovichi).add(BTN_set_krichev, BTN_set_mstislavl)\
+    .add(BTN_set_osipovichi, BTN_set_slavgorod).add(BTN_set_chausy, BTN_set_cherikov).add(BTN_set_shklov, BTN_set_hotimsk)\
+    .add(BTN_set_mogilevskaya_obl_drugie)
+
