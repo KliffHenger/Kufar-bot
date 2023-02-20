@@ -14,4 +14,4 @@ ALL_MENU = InlineKeyboardMarkup().add(BTN_set_search).add(BTN_region_select).add
 MENU = InlineKeyboardMarkup().add(BTN_menu)
 GO = InlineKeyboardMarkup().add(BTN_go_search)
 STOP = InlineKeyboardMarkup().add(BTN_stop_search)
-REGION = InlineKeyboardMarkup().add(BTN_region_select)
+REGION = InlineKeyboardMarkup().add(BTN_region_select, BTN_go_search)

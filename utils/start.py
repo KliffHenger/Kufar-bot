@@ -5,9 +5,10 @@ from user_states import Search
 from aiogram.dispatcher import FSMContext
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from config import bot, dp
-from .parsing import urlify, get_item#, get_url, get_price
+from .parsing import urlify, get_item
 from keyboards.inline_menu import START, MENU, GO, STOP, ALL_MENU, REGION
 from aiogram.utils.markdown import hlink
+# from datetime import datetime, timedelta
 
 
 async def start_bot(message: types.Message):
@@ -20,20 +21,22 @@ async def start_bot(message: types.Message):
             await bot.send_message(message.from_user.id, text=f'Привет, {name_user}! Можно начинать отслеживание.\n\
 Для помощи введите команду /help', reply_markup=START)
     if not is_user:
+        await bot.send_message(message.from_user.id, text=f'Добро пожаловать в наш сервис!\n\
+Введите команду /help для вывода описания функций или используйте кнопки под этим меню.', reply_markup=START)
         table.create({'UserName': str(message.from_user.first_name),
                       'UserTGID': str(message.from_user.id),
+                      'DayLife': '2',
                       'SearchWord': 'None',
                       'Region': 'l',
                       'UrlProd': 'None',
                       'PriceProd': 'None',
                       'JobName': 'None'})
-        await bot.send_message(message.from_user.id, text=f'Добро пожаловать в наш сервис!\n\
-Введите команду /help для вывода описания функций или используйте кнопки под этим меню.', reply_markup=START)
 
 async def help_message(message: types.Message):
     await bot.send_message(message.from_user.id, 
-                        text=f"Бот отслеживает новые обьявления от частных лиц на площадке Куфар и будет сообщать Вам по мере их появления.\n\n\
-По всем вопросам и предложениям можете обращаться: {hlink ('Автор Бота', 'https://t.me/NikolayMiracle')} ", parse_mode='HTML', reply_markup=MENU)
+                        text=f"Бот отслеживает новые обьявления от частных лиц на площадке Куфар и будет сообщать Вам по мере их появления.\n\
+(Бесплатное время работы - 2 дня)\n\n\
+По всем вопросам, оплаты и предложениям можете обращаться: {hlink ('Автор Бота', 'https://t.me/NikolayMiracle')} ", parse_mode='HTML', reply_markup=MENU)
 
 
 @dp.callback_query_handler(text='set_word')
@@ -41,14 +44,26 @@ async def set_search(message: types.Message):
     ''' тут мы на всякий случай останавливаем планировщик'''
     all_table = table.all()
     for index in range(len(all_table)):
-        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id)\
+                and all_table[index]['fields']['DayLife'] != '0':
             try:
                 job_name = all_table[index]['fields']['JobName']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
             except:
                 pass
-    await bot.send_message(message.from_user.id, f"Введи название товара (напр. - стиральная машина) для отслеживания:")
-    await Search.search_word.set()
+            await bot.send_message(message.from_user.id, f"Введи название товара (напр. - стиральная машина) для отслеживания:")
+            await Search.search_word.set()
+        elif all_table[index]['fields']['UserTGID'] == str(message.from_user.id)\
+                and all_table[index]['fields']['DayLife'] == '0':
+            try:
+                job_name = all_table[index]['fields']['JobName']
+                globals()[job_name].shutdown(wait=False) # отключение планировщика
+            except:
+                pass
+            await bot.send_message(message.from_user.id, text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
+абонентской платы в размере - 20 BYN (за 30 дней).\n\
+Для уплаты необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
+        
 
 
 async def input_word(message: types.Message, state=FSMContext):
@@ -75,46 +90,57 @@ async def input_word(message: types.Message, state=FSMContext):
 async def search_go(message: types.Message):
     all_table = table.all()
     for index in range(len(all_table)):
-        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id)\
+                and all_table[index]['fields']['DayLife'] != '0':
             try:
                 job_name = all_table[index]['fields']['JobName']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
             except:
                 pass
-    global record_id
-    global tg_id
-    tg_id, record_id = '', ''
-    tg_id = str(message.from_user.id)
-    for index in range(len(all_table)):
-        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
-            old_url = all_table[index]['fields']['UrlProd']
-            s_word = all_table[index]['fields']['SearchWord']
-            reg = all_table[index]['fields']['Region']
+            global record_id
+            global tg_id
+            tg_id, record_id = '', ''
+            tg_id = str(message.from_user.id)
             for index in range(len(all_table)):
                 if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
-                    record_id = all_table[index]['id']
-                    name_sched = 'sched'+str(message.from_user.id)
-                    globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
-                    item = get_item(reg, s_word)
-                    try:
-                        urla = str(item[0])
-                        price = str(item[1])
-                        table.update(record_id=str(record_id), fields={'UrlProd': urla})
-                        table.update(record_id=str(record_id), fields={'PriceProd': price})
-                        table.update(record_id=str(record_id), fields={'JobName': name_sched})
-                        await bot.send_message(int(tg_id), 
-                                               text=f'Первый найденый товар - {urla}\nЦена - {price}\nКогда появится еще, то сообщение придёт автоматически.', 
-                                               reply_markup=STOP)
-                        print(name_sched)
-                        mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
-                        print(mess_bd)
-                        globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, 
-                                                      kwargs={'mess_bd': mess_bd}, misfire_grace_time=3)
-                        globals()[name_sched].start()
-                        globals()[name_sched].print_jobs()
-                    except:
-                        await bot.send_message(int(tg_id), text=f'По Вашему запросу "{s_word}" объявлений НЕ НАЙДЕНО.\n\n\
+                    old_url = all_table[index]['fields']['UrlProd']
+                    s_word = all_table[index]['fields']['SearchWord']
+                    reg = all_table[index]['fields']['Region']
+                    for index in range(len(all_table)):
+                        if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+                            record_id = all_table[index]['id']
+                            name_sched = 'sched'+str(message.from_user.id)
+                            globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
+                            item = get_item(reg, s_word)
+                            try:
+                                urla = str(item[0])
+                                price = str(item[1])
+                                table.update(record_id=str(record_id), fields={'UrlProd': urla})
+                                table.update(record_id=str(record_id), fields={'PriceProd': price})
+                                table.update(record_id=str(record_id), fields={'JobName': name_sched})
+                                await bot.send_message(int(tg_id), 
+                                                    text=f'Первый найденый товар - {urla}\nЦена - {price}\nКогда появится еще, то сообщение придёт автоматически.', 
+                                                    reply_markup=STOP)
+                                print(name_sched)
+                                mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
+                                print(mess_bd)
+                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, 
+                                                            kwargs={'mess_bd': mess_bd}, misfire_grace_time=3)
+                                globals()[name_sched].start()
+                                globals()[name_sched].print_jobs()
+                            except:
+                                await bot.send_message(int(tg_id), text=f'По Вашему запросу "{s_word}" объявлений НЕ НАЙДЕНО.\n\n\
 Измените запрос.', reply_markup=START)
+        elif all_table[index]['fields']['UserTGID'] == str(message.from_user.id)\
+                and all_table[index]['fields']['DayLife'] == '0':
+            try:
+                job_name = all_table[index]['fields']['JobName']
+                globals()[job_name].shutdown(wait=False) # отключение планировщика
+            except:
+                pass
+            await bot.send_message(message.from_user.id, text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
+абонентской платы в размере - 20 BYN (за 30 дней).\n\
+Для уплаты необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
 
 
 # async def search_go(message: types.Message):
@@ -220,7 +246,7 @@ async def message_for_all(message: types.Message):
         id_tg = all_table[index]['fields']['UserTGID']
         await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
 Из-за этого все активные отслеживания были остановленны.\n\n\
-Для их перезапуска используйте соответствующие пункты меню', reply_markup=MENU)
+Для их перезапуска используйте соответствующие пункты меню.', reply_markup=MENU)
         
 
 @dp.callback_query_handler(text='menu')

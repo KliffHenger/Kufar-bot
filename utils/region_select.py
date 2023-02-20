@@ -4,7 +4,7 @@ from aiogram.dispatcher import FSMContext
 from config import bot, dp
 from keyboards.inline_regions import REGIONS, MINSK, BRESTSKAYA_OBL, VITEBSKAYA_OBL, GOMELSKAYA_OBL, \
                                         GRODNENSKAYA_OBL, MINSKAYA_OBL, MOGILEVSKAYA_OBL
-from keyboards.inline_menu import MENU
+from keyboards.inline_menu import GO
 
 
 @dp.callback_query_handler(text='region_select')
@@ -28,7 +28,7 @@ async def vsya_belarus(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Беларусь', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Беларусь', reply_markup=GO)
 
 @dp.callback_query_handler(text='ves_minsk')
 async def ves_minsk(message: types.Message):
@@ -44,7 +44,7 @@ async def minsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-centralnyj')
 async def minsk_centralnyj(message: types.Message):
@@ -55,7 +55,7 @@ async def minsk_centralnyj(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Центральный р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Центральный р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-sovetskij')
 async def minsk_sovetskij(message: types.Message):
@@ -66,7 +66,7 @@ async def minsk_sovetskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Советский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Советский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='mins-pervomajskij')
 async def mins_pervomajskij(message: types.Message):
@@ -77,7 +77,7 @@ async def mins_pervomajskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Первомайский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Первомайский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-partizanskij')
 async def minsk_partizanskij(message: types.Message):
@@ -88,7 +88,7 @@ async def minsk_partizanskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Партизанский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Партизанский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-zavodskoj')
 async def minsk_zavodskoj(message: types.Message):
@@ -99,7 +99,7 @@ async def minsk_zavodskoj(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Заводской р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Заводской р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-leninskij')
 async def minsk_leninskij(message: types.Message):
@@ -110,7 +110,7 @@ async def minsk_leninskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Ленинский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Ленинский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-oktyabrskij')
 async def minsk_oktyabrskij(message: types.Message):
@@ -121,7 +121,7 @@ async def minsk_oktyabrskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Октябрьский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Октябрьский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-moskovskij')
 async def minsk_moskovskij(message: types.Message):
@@ -132,7 +132,7 @@ async def minsk_moskovskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Московский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Московский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='minsk-frunzenskij')
 async def minsk_frunzenskij(message: types.Message):
@@ -143,7 +143,7 @@ async def minsk_frunzenskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Фрунзенский р-н', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минск, Фрунзенский р-н', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_brestskaya')
 async def vsa_brestskaya(message: types.Message):
@@ -159,7 +159,7 @@ async def brestskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Брестскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Брестскую обл.', reply_markup=GO)
 
 @dp.callback_query_handler(text='brest')
 async def brest(message: types.Message):
@@ -170,7 +170,7 @@ async def brest(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Брест', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Брест', reply_markup=GO)
 
 @dp.callback_query_handler(text='baranovichi')
 async def baranovichi(message: types.Message):
@@ -181,7 +181,7 @@ async def baranovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Барановичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Барановичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='bereza')
 async def bereza(message: types.Message):
@@ -192,7 +192,7 @@ async def bereza(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Береза', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Береза', reply_markup=GO)
 
 @dp.callback_query_handler(text='beloozersk')
 async def beloozersk(message: types.Message):
@@ -203,7 +203,7 @@ async def beloozersk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Белоозерск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Белоозерск', reply_markup=GO)
 
 @dp.callback_query_handler(text='vysokae')
 async def vysokae(message: types.Message):
@@ -214,7 +214,7 @@ async def vysokae(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Высокое', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Высокое', reply_markup=GO)
 
 @dp.callback_query_handler(text='gancevichi')
 async def gancevichi(message: types.Message):
@@ -225,7 +225,7 @@ async def gancevichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ганцевичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ганцевичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='davyd-haradok')
 async def davyd_haradok(message: types.Message):
@@ -236,7 +236,7 @@ async def davyd_haradok(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Давид-Городок', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Давид-Городок', reply_markup=GO)
 
 @dp.callback_query_handler(text='drogichin')
 async def drogichin(message: types.Message):
@@ -247,7 +247,7 @@ async def drogichin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дрогичин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дрогичин', reply_markup=GO)
 
 @dp.callback_query_handler(text='zhabinka')
 async def zhabinka(message: types.Message):
@@ -258,7 +258,7 @@ async def zhabinka(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жабинка', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жабинка', reply_markup=GO)
 
 @dp.callback_query_handler(text='ivanovo')
 async def ivanovo(message: types.Message):
@@ -269,7 +269,7 @@ async def ivanovo(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Иваново', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Иваново', reply_markup=GO)
 
 @dp.callback_query_handler(text='ivacevichi')
 async def ivacevichi(message: types.Message):
@@ -280,7 +280,7 @@ async def ivacevichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ивацевичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ивацевичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='kamenec')
 async def kamenec(message: types.Message):
@@ -291,7 +291,7 @@ async def kamenec(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Каменец', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Каменец', reply_markup=GO)
 
 @dp.callback_query_handler(text='kobrin')
 async def kobrin(message: types.Message):
@@ -302,7 +302,7 @@ async def kobrin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кобрин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кобрин', reply_markup=GO)
 
 @dp.callback_query_handler(text='luninec')
 async def luninec(message: types.Message):
@@ -313,7 +313,7 @@ async def luninec(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лунинец', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лунинец', reply_markup=GO)
 
 @dp.callback_query_handler(text='lyahovichi')
 async def lyahovichi(message: types.Message):
@@ -324,7 +324,7 @@ async def lyahovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ляховичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ляховичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='malorita')
 async def malorita(message: types.Message):
@@ -335,7 +335,7 @@ async def malorita(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Малорита', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Малорита', reply_markup=GO)
 
 @dp.callback_query_handler(text='mikashevichy')
 async def mikashevichy(message: types.Message):
@@ -346,7 +346,7 @@ async def mikashevichy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Микашевичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Микашевичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='pinsk')
 async def pinsk(message: types.Message):
@@ -357,7 +357,7 @@ async def pinsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Пинск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Пинск', reply_markup=GO)
 
 @dp.callback_query_handler(text='pruzhany')
 async def pruzhany(message: types.Message):
@@ -368,7 +368,7 @@ async def pruzhany(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Пружаны', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Пружаны', reply_markup=GO)
 
 @dp.callback_query_handler(text='stolin')
 async def stolin(message: types.Message):
@@ -379,7 +379,7 @@ async def stolin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Столин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Столин', reply_markup=GO)
 
 @dp.callback_query_handler(text='brestskaya-obl-drugie')
 async def brestskaya_obl_drugie(message: types.Message):
@@ -390,7 +390,7 @@ async def brestskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_vitebslaya')
 async def vsa_vitebslaya(message: types.Message):
@@ -407,7 +407,7 @@ async def vitebskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Витебскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Витебскую обл.', reply_markup=GO)
 
 @dp.callback_query_handler(text='vitebsk')
 async def vitebsk(message: types.Message):
@@ -418,7 +418,7 @@ async def vitebsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Витебск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Витебск', reply_markup=GO)
 
 @dp.callback_query_handler(text='beshenkovichi')
 async def beshenkovichi(message: types.Message):
@@ -429,7 +429,7 @@ async def beshenkovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Бешенковичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Бешенковичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='baran')
 async def baran(message: types.Message):
@@ -440,7 +440,7 @@ async def baran(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Барань', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Барань', reply_markup=GO)
 
 @dp.callback_query_handler(text='braslav')
 async def braslav(message: types.Message):
@@ -451,7 +451,7 @@ async def braslav(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Браслав', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Браслав', reply_markup=GO)
 
 @dp.callback_query_handler(text='verhnedvinsk')
 async def verhnedvinsk(message: types.Message):
@@ -462,7 +462,7 @@ async def verhnedvinsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Верхнедвинск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Верхнедвинск', reply_markup=GO)
 
 @dp.callback_query_handler(text='glubokoe')
 async def glubokoe(message: types.Message):
@@ -473,7 +473,7 @@ async def glubokoe(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Глубокое', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Глубокое', reply_markup=GO)
 
 @dp.callback_query_handler(text='gorodok')
 async def gorodok(message: types.Message):
@@ -484,7 +484,7 @@ async def gorodok(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Городок', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Городок', reply_markup=GO)
 
 @dp.callback_query_handler(text='dubrovno')
 async def dubrovno(message: types.Message):
@@ -495,7 +495,7 @@ async def dubrovno(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дубровно', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дубровно', reply_markup=GO)
 
 @dp.callback_query_handler(text='lepel')
 async def lepel(message: types.Message):
@@ -506,7 +506,7 @@ async def lepel(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лепель', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лепель', reply_markup=GO)
 
 @dp.callback_query_handler(text='liozno')
 async def liozno(message: types.Message):
@@ -517,7 +517,7 @@ async def liozno(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лиозно', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лиозно', reply_markup=GO)
 
 @dp.callback_query_handler(text='miory')
 async def miory(message: types.Message):
@@ -528,7 +528,7 @@ async def miory(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Миоры', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Миоры', reply_markup=GO)
 
 @dp.callback_query_handler(text='novolukoml')
 async def novolukoml(message: types.Message):
@@ -539,7 +539,7 @@ async def novolukoml(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новолукомль', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новолукомль', reply_markup=GO)
 
 @dp.callback_query_handler(text='novopolock')
 async def novopolock(message: types.Message):
@@ -550,7 +550,7 @@ async def novopolock(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новополоцк', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новополоцк', reply_markup=GO)
 
 @dp.callback_query_handler(text='orsha')
 async def orsha(message: types.Message):
@@ -561,7 +561,7 @@ async def orsha(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Орша', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Орша', reply_markup=GO)
 
 @dp.callback_query_handler(text='polock')
 async def polock(message: types.Message):
@@ -572,7 +572,7 @@ async def polock(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Полоцк', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Полоцк', reply_markup=GO)
 
 @dp.callback_query_handler(text='postavy')
 async def postavy(message: types.Message):
@@ -583,7 +583,7 @@ async def postavy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Поставы', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Поставы', reply_markup=GO)
 
 @dp.callback_query_handler(text='rossony')
 async def rossony(message: types.Message):
@@ -594,7 +594,7 @@ async def rossony(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Россоны', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Россоны', reply_markup=GO)
 
 @dp.callback_query_handler(text='senno')
 async def senno(message: types.Message):
@@ -605,7 +605,7 @@ async def senno(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Сенно', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Сенно', reply_markup=GO)
 
 @dp.callback_query_handler(text='tolochin')
 async def tolochin(message: types.Message):
@@ -616,7 +616,7 @@ async def tolochin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Толочин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Толочин', reply_markup=GO)
 
 @dp.callback_query_handler(text='ushachi')
 async def ushachi(message: types.Message):
@@ -627,7 +627,7 @@ async def ushachi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ушачи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ушачи', reply_markup=GO)
 
 @dp.callback_query_handler(text='chashniki')
 async def chashniki(message: types.Message):
@@ -638,7 +638,7 @@ async def chashniki(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чашники', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чашники', reply_markup=GO)
 
 @dp.callback_query_handler(text='sharkovshchina')
 async def sharkovshchina(message: types.Message):
@@ -649,7 +649,7 @@ async def sharkovshchina(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шарковщина', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шарковщина', reply_markup=GO)
 
 @dp.callback_query_handler(text='shumilino')
 async def shumilino(message: types.Message):
@@ -660,7 +660,7 @@ async def shumilino(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шумилино', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шумилино', reply_markup=GO)
 
 @dp.callback_query_handler(text='vitebskaya-obl-drugie')
 async def vitebskaya_obl_drugie(message: types.Message):
@@ -671,7 +671,7 @@ async def vitebskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_gomelstaya')
 async def vsa_gomelstaya(message: types.Message):
@@ -687,7 +687,7 @@ async def gomelskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Гомельскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Гомельскую обл.', reply_markup=GO)
 
 @dp.callback_query_handler(text='gomel')
 async def gomel(message: types.Message):
@@ -698,7 +698,7 @@ async def gomel(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Гомель', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Гомель', reply_markup=GO)
 
 @dp.callback_query_handler(text='bragin')
 async def bragin(message: types.Message):
@@ -709,7 +709,7 @@ async def bragin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Брагин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Брагин', reply_markup=GO)
 
 @dp.callback_query_handler(text='buda-koshelevo')
 async def buda_koshelevo(message: types.Message):
@@ -720,7 +720,7 @@ async def buda_koshelevo(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Буда-Кошелево', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Буда-Кошелево', reply_markup=GO)
 
 @dp.callback_query_handler(text='vasilevichy')
 async def vasilevichy(message: types.Message):
@@ -731,7 +731,7 @@ async def vasilevichy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Василевичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Василевичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='vetka')
 async def vetka(message: types.Message):
@@ -742,7 +742,7 @@ async def vetka(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ветка', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ветка', reply_markup=GO)
 
 @dp.callback_query_handler(text='dobrush')
 async def dobrush(message: types.Message):
@@ -753,7 +753,7 @@ async def dobrush(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Добруш', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Добруш', reply_markup=GO)
 
 @dp.callback_query_handler(text='elsk')
 async def elsk(message: types.Message):
@@ -764,7 +764,7 @@ async def elsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ельск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ельск', reply_markup=GO)
 
 @dp.callback_query_handler(text='zhitkovichi')
 async def zhitkovichi(message: types.Message):
@@ -775,7 +775,7 @@ async def zhitkovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Житковичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Житковичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='zhlobin')
 async def zhlobin(message: types.Message):
@@ -786,7 +786,7 @@ async def zhlobin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жлобин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жлобин', reply_markup=GO)
 
 @dp.callback_query_handler(text='kalinkovichi')
 async def kalinkovichi(message: types.Message):
@@ -797,7 +797,7 @@ async def kalinkovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Калинковичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Калинковичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='korma')
 async def korma(message: types.Message):
@@ -808,7 +808,7 @@ async def korma(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Корма', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Корма', reply_markup=GO)
 
 @dp.callback_query_handler(text='lelchicy')
 async def lelchicy(message: types.Message):
@@ -819,7 +819,7 @@ async def lelchicy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лельчицы', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лельчицы', reply_markup=GO)
 
 @dp.callback_query_handler(text='loev')
 async def loev(message: types.Message):
@@ -830,7 +830,7 @@ async def loev(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лоев', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лоев', reply_markup=GO)
 
 @dp.callback_query_handler(text='mozyr')
 async def mozyr(message: types.Message):
@@ -841,7 +841,7 @@ async def mozyr(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мозырь', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мозырь', reply_markup=GO)
 
 @dp.callback_query_handler(text='oktyabrskij')
 async def oktyabrskij(message: types.Message):
@@ -852,7 +852,7 @@ async def oktyabrskij(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Октябрьский', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Октябрьский', reply_markup=GO)
 
 @dp.callback_query_handler(text='narovlya')
 async def narovlya(message: types.Message):
@@ -863,7 +863,7 @@ async def narovlya(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Наровля', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Наровля', reply_markup=GO)
 
 @dp.callback_query_handler(text='petrikov')
 async def petrikov(message: types.Message):
@@ -874,7 +874,7 @@ async def petrikov(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Петриков', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Петриков', reply_markup=GO)
 
 @dp.callback_query_handler(text='rechica')
 async def rechica(message: types.Message):
@@ -885,7 +885,7 @@ async def rechica(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Речица', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Речица', reply_markup=GO)
 
 @dp.callback_query_handler(text='rogachev')
 async def rogachev(message: types.Message):
@@ -896,7 +896,7 @@ async def rogachev(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Рогачев', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Рогачев', reply_markup=GO)
 
 @dp.callback_query_handler(text='svetlogorsk')
 async def svetlogorsk(message: types.Message):
@@ -907,7 +907,7 @@ async def svetlogorsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Светлогорск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Светлогорск', reply_markup=GO)
 
 @dp.callback_query_handler(text='hojniki')
 async def hojniki(message: types.Message):
@@ -918,7 +918,7 @@ async def hojniki(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Хойники', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Хойники', reply_markup=GO)
 
 @dp.callback_query_handler(text='chechersk')
 async def chechersk(message: types.Message):
@@ -929,7 +929,7 @@ async def chechersk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чечерск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чечерск', reply_markup=GO)
 
 @dp.callback_query_handler(text='gomelskaya-obl-drugie')
 async def gomelskaya_obl_drugie(message: types.Message):
@@ -940,7 +940,7 @@ async def gomelskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_grodnenskaya')
 async def vsa_grodnenskaya(message: types.Message):
@@ -956,7 +956,7 @@ async def grodnenskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Гродненскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Гродненскую обл.', reply_markup=GO)
 
 @dp.callback_query_handler(text='grodno')
 async def grodno(message: types.Message):
@@ -967,7 +967,7 @@ async def grodno(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Гродно', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Гродно', reply_markup=GO)
 
 @dp.callback_query_handler(text='berezovka')
 async def berezovka(message: types.Message):
@@ -978,7 +978,7 @@ async def berezovka(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Березовка', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Березовка', reply_markup=GO)
 
 @dp.callback_query_handler(text='berestovica')
 async def berestovica(message: types.Message):
@@ -989,7 +989,7 @@ async def berestovica(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Берестовица', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Берестовица', reply_markup=GO)
 
 @dp.callback_query_handler(text='volkovysk')
 async def volkovysk(message: types.Message):
@@ -1000,7 +1000,7 @@ async def volkovysk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Волковыск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Волковыск', reply_markup=GO)
 
 @dp.callback_query_handler(text='voronovo')
 async def voronovo(message: types.Message):
@@ -1011,7 +1011,7 @@ async def voronovo(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Вороново', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Вороново', reply_markup=GO)
 
 @dp.callback_query_handler(text='dyatlovo')
 async def dyatlovo(message: types.Message):
@@ -1022,7 +1022,7 @@ async def dyatlovo(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дятлово', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дятлово', reply_markup=GO)
 
 @dp.callback_query_handler(text='zelva')
 async def zelva(message: types.Message):
@@ -1033,7 +1033,7 @@ async def zelva(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Зельва', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Зельва', reply_markup=GO)
 
 @dp.callback_query_handler(text='ivie')
 async def ivie(message: types.Message):
@@ -1044,7 +1044,7 @@ async def ivie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ивье', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ивье', reply_markup=GO)
 
 @dp.callback_query_handler(text='korelichi')
 async def korelichi(message: types.Message):
@@ -1055,7 +1055,7 @@ async def korelichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кореличи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кореличи', reply_markup=GO)
 
 @dp.callback_query_handler(text='lida')
 async def lida(message: types.Message):
@@ -1066,7 +1066,7 @@ async def lida(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лида', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Лида', reply_markup=GO)
 
 @dp.callback_query_handler(text='mosty')
 async def mosty(message: types.Message):
@@ -1077,7 +1077,7 @@ async def mosty(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мосты', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мосты', reply_markup=GO)
 
 @dp.callback_query_handler(text='novogrudok')
 async def novogrudok(message: types.Message):
@@ -1088,7 +1088,7 @@ async def novogrudok(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новогрудок', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Новогрудок', reply_markup=GO)
 
 @dp.callback_query_handler(text='ostrovec')
 async def ostrovec(message: types.Message):
@@ -1099,7 +1099,7 @@ async def ostrovec(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Островец', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Островец', reply_markup=GO)
 
 @dp.callback_query_handler(text='oshmyany')
 async def oshmyany(message: types.Message):
@@ -1110,7 +1110,7 @@ async def oshmyany(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ошмяны', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Ошмяны', reply_markup=GO)
 
 @dp.callback_query_handler(text='svisloch')
 async def svisloch(message: types.Message):
@@ -1121,7 +1121,7 @@ async def svisloch(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Свислочь', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Свислочь', reply_markup=GO)
 
 @dp.callback_query_handler(text='skidel')
 async def skidel(message: types.Message):
@@ -1132,7 +1132,7 @@ async def skidel(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Скидель', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Скидель', reply_markup=GO)
 
 @dp.callback_query_handler(text='slonim')
 async def slonim(message: types.Message):
@@ -1143,7 +1143,7 @@ async def slonim(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Слоним', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Слоним', reply_markup=GO)
 
 @dp.callback_query_handler(text='smorgon')
 async def smorgon(message: types.Message):
@@ -1154,7 +1154,7 @@ async def smorgon(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Сморгонь', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Сморгонь', reply_markup=GO)
 
 @dp.callback_query_handler(text='shchuchin')
 async def shchuchin(message: types.Message):
@@ -1165,7 +1165,7 @@ async def shchuchin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Щучин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Щучин', reply_markup=GO)
 
 @dp.callback_query_handler(text='grodnenskaya-obl-drugie')
 async def grodnenskaya_obl_drugie(message: types.Message):
@@ -1176,7 +1176,7 @@ async def grodnenskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_minskaya')
 async def vsa_minskaya(message: types.Message):
@@ -1192,7 +1192,7 @@ async def minskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Минскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Минскую обл.', reply_markup=GO)
 
 
 @dp.callback_query_handler(text='minskij-rajon')
@@ -1204,7 +1204,7 @@ async def minskij_rajon(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минский район', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Минский район', reply_markup=GO)
 
 @dp.callback_query_handler(text='berezino')
 async def berezino(message: types.Message):
@@ -1215,7 +1215,7 @@ async def berezino(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Березино', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Березино', reply_markup=GO)
 
 @dp.callback_query_handler(text='borisov')
 async def borisov(message: types.Message):
@@ -1226,7 +1226,7 @@ async def borisov(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Борисов', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Борисов', reply_markup=GO)
 
 @dp.callback_query_handler(text='vilejka')
 async def vilejka(message: types.Message):
@@ -1237,7 +1237,7 @@ async def vilejka(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Вилейка', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Вилейка', reply_markup=GO)
 
 @dp.callback_query_handler(text='volozhin')
 async def volozhin(message: types.Message):
@@ -1248,7 +1248,7 @@ async def volozhin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Воложин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Воложин', reply_markup=GO)
 
 @dp.callback_query_handler(text='dzerzhinsk')
 async def dzerzhinsk(message: types.Message):
@@ -1259,7 +1259,7 @@ async def dzerzhinsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дзержинск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дзержинск', reply_markup=GO)
 
 @dp.callback_query_handler(text='zhodino')
 async def zhodino(message: types.Message):
@@ -1270,7 +1270,7 @@ async def zhodino(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жодино', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Жодино', reply_markup=GO)
 
 @dp.callback_query_handler(text='zaslavl')
 async def zaslavl(message: types.Message):
@@ -1281,7 +1281,7 @@ async def zaslavl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Заславль', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Заславль', reply_markup=GO)
 
 @dp.callback_query_handler(text='kleck')
 async def kleck(message: types.Message):
@@ -1292,7 +1292,7 @@ async def kleck(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Клецк', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Клецк', reply_markup=GO)
 
 @dp.callback_query_handler(text='kopyl')
 async def kopyl(message: types.Message):
@@ -1303,7 +1303,7 @@ async def kopyl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Копыль', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Копыль', reply_markup=GO)
 
 @dp.callback_query_handler(text='krupki')
 async def krupki(message: types.Message):
@@ -1314,7 +1314,7 @@ async def krupki(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Крупки', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Крупки', reply_markup=GO)
 
 @dp.callback_query_handler(text='logojsk')
 async def logojsk(message: types.Message):
@@ -1325,7 +1325,7 @@ async def logojsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Логойск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Логойск', reply_markup=GO)
 
 @dp.callback_query_handler(text='lyuban')
 async def lyuban(message: types.Message):
@@ -1336,7 +1336,7 @@ async def lyuban(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Любань', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Любань', reply_markup=GO)
 
 @dp.callback_query_handler(text='marina-gorka')
 async def marina_gorka(message: types.Message):
@@ -1347,7 +1347,7 @@ async def marina_gorka(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Марьина Горка', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Марьина Горка', reply_markup=GO)
 
 @dp.callback_query_handler(text='molodechno')
 async def molodechno(message: types.Message):
@@ -1358,7 +1358,7 @@ async def molodechno(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Молодечно', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Молодечно', reply_markup=GO)
 
 @dp.callback_query_handler(text='myadel')
 async def myadel(message: types.Message):
@@ -1369,7 +1369,7 @@ async def myadel(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мядель', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мядель', reply_markup=GO)
 
 @dp.callback_query_handler(text='nesvizh')
 async def nesvizh(message: types.Message):
@@ -1380,7 +1380,7 @@ async def nesvizh(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Несвиж', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Несвиж', reply_markup=GO)
 
 @dp.callback_query_handler(text='rudensk')
 async def rudensk(message: types.Message):
@@ -1391,7 +1391,7 @@ async def rudensk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Руденск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Руденск', reply_markup=GO)
 
 @dp.callback_query_handler(text='sluck')
 async def sluck(message: types.Message):
@@ -1402,7 +1402,7 @@ async def sluck(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Слуцк', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Слуцк', reply_markup=GO)
 
 @dp.callback_query_handler(text='smolevichi')
 async def smolevichi(message: types.Message):
@@ -1413,7 +1413,7 @@ async def smolevichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Смолевичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Смолевичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='soligorsk')
 async def soligorsk(message: types.Message):
@@ -1424,7 +1424,7 @@ async def soligorsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Солигорск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Солигорск', reply_markup=GO)
 
 @dp.callback_query_handler(text='starye-dorogi')
 async def starye_dorogi(message: types.Message):
@@ -1435,7 +1435,7 @@ async def starye_dorogi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Старые Дороги', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Старые Дороги', reply_markup=GO)
 
 @dp.callback_query_handler(text='stolbcy')
 async def stolbcy(message: types.Message):
@@ -1446,7 +1446,7 @@ async def stolbcy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Столбцы', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Столбцы', reply_markup=GO)
 
 @dp.callback_query_handler(text='uzda')
 async def uzda(message: types.Message):
@@ -1457,7 +1457,7 @@ async def uzda(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Узда', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Узда', reply_markup=GO)
 
 @dp.callback_query_handler(text='fanipol')
 async def fanipol(message: types.Message):
@@ -1468,7 +1468,7 @@ async def fanipol(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Фаниполь', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Фаниполь', reply_markup=GO)
 
 @dp.callback_query_handler(text='cherven')
 async def cherven(message: types.Message):
@@ -1479,7 +1479,7 @@ async def cherven(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Червень', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Червень', reply_markup=GO)
 
 @dp.callback_query_handler(text='minskaya-obl-drugie')
 async def minskaya_obl_drugie(message: types.Message):
@@ -1490,7 +1490,7 @@ async def minskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
 @dp.callback_query_handler(text='vsa_mogilevskaya')
 async def vsa_mogilevskaya(message: types.Message):
@@ -1506,7 +1506,7 @@ async def mogilevskaya_obl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Могилевскую обл.', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Всю Могилевскую обл.', reply_markup=GO)
 
 @dp.callback_query_handler(text='mogilev')
 async def mogilev(message: types.Message):
@@ -1517,7 +1517,7 @@ async def mogilev(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Могилев', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Могилев', reply_markup=GO)
 
 @dp.callback_query_handler(text='belynichi')
 async def belynichi(message: types.Message):
@@ -1528,7 +1528,7 @@ async def belynichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Белыничи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Белыничи', reply_markup=GO)
 
 @dp.callback_query_handler(text='bobrujsk')
 async def bobrujsk(message: types.Message):
@@ -1539,7 +1539,7 @@ async def bobrujsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Бобруйск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Бобруйск', reply_markup=GO)
 
 @dp.callback_query_handler(text='byhov')
 async def byhov(message: types.Message):
@@ -1550,7 +1550,7 @@ async def byhov(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Быхов', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Быхов', reply_markup=GO)
 
 @dp.callback_query_handler(text='glusk')
 async def glusk(message: types.Message):
@@ -1561,7 +1561,7 @@ async def glusk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Глуск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Глуск', reply_markup=GO)
 
 @dp.callback_query_handler(text='gorki')
 async def gorki(message: types.Message):
@@ -1572,7 +1572,7 @@ async def gorki(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Горки', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Горки', reply_markup=GO)
 
 @dp.callback_query_handler(text='dribin')
 async def dribin(message: types.Message):
@@ -1583,7 +1583,7 @@ async def dribin(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дрибин', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Дрибин', reply_markup=GO)
 
 @dp.callback_query_handler(text='kirovsk')
 async def kirovsk(message: types.Message):
@@ -1594,7 +1594,7 @@ async def kirovsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кировск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кировск', reply_markup=GO)
 
 @dp.callback_query_handler(text='klimovichi')
 async def klimovichi(message: types.Message):
@@ -1605,7 +1605,7 @@ async def klimovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Климовичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Климовичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='klichev')
 async def klichev(message: types.Message):
@@ -1616,7 +1616,7 @@ async def klichev(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кличев', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кличев', reply_markup=GO)
 
 @dp.callback_query_handler(text='krasnopole')
 async def krasnopole(message: types.Message):
@@ -1627,7 +1627,7 @@ async def krasnopole(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Краснополье', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Краснополье', reply_markup=GO)
 
 @dp.callback_query_handler(text='krugloe')
 async def krugloe(message: types.Message):
@@ -1638,7 +1638,7 @@ async def krugloe(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Круглое', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Круглое', reply_markup=GO)
 
 @dp.callback_query_handler(text='kostyukovichi')
 async def kostyukovichi(message: types.Message):
@@ -1649,7 +1649,7 @@ async def kostyukovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Костюковичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Костюковичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='krichev')
 async def krichev(message: types.Message):
@@ -1660,7 +1660,7 @@ async def krichev(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кричев', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Кричев', reply_markup=GO)
 
 @dp.callback_query_handler(text='mstislavl')
 async def mstislavl(message: types.Message):
@@ -1671,7 +1671,7 @@ async def mstislavl(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мстиславль', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Мстиславль', reply_markup=GO)
 
 @dp.callback_query_handler(text='osipovichi')
 async def osipovichi(message: types.Message):
@@ -1682,7 +1682,7 @@ async def osipovichi(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Осиповичи', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Осиповичи', reply_markup=GO)
 
 @dp.callback_query_handler(text='slavgorod')
 async def slavgorod(message: types.Message):
@@ -1693,7 +1693,7 @@ async def slavgorod(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Славгород', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Славгород', reply_markup=GO)
 
 @dp.callback_query_handler(text='chausy')
 async def chausy(message: types.Message):
@@ -1704,7 +1704,7 @@ async def chausy(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чаусы', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чаусы', reply_markup=GO)
 
 @dp.callback_query_handler(text='cherikov')
 async def cherikov(message: types.Message):
@@ -1715,7 +1715,7 @@ async def cherikov(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чериков', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Чериков', reply_markup=GO)
 
 @dp.callback_query_handler(text='shklov')
 async def shklov(message: types.Message):
@@ -1726,7 +1726,7 @@ async def shklov(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шклов', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Шклов', reply_markup=GO)
 
 @dp.callback_query_handler(text='hotimsk')
 async def hotimsk(message: types.Message):
@@ -1737,7 +1737,7 @@ async def hotimsk(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Хотимск', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Хотимск', reply_markup=GO)
 
 @dp.callback_query_handler(text='mogilevskaya-obl-drugie')
 async def mogilevskaya_obl_drugie(message: types.Message):
@@ -1748,5 +1748,5 @@ async def mogilevskaya_obl_drugie(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             record_id = all_table[index]['id']
             table.update(record_id=record_id, fields={'Region': str(reg)})
-            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=MENU)
+            await bot.send_message(message.from_user.id, text=f'Вы выбрали - Другие города', reply_markup=GO)
 
