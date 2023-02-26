@@ -77,15 +77,15 @@ async def input_word(message: types.Message, state=FSMContext):
             reg = all_table[index]['fields']['Region']
             item = get_item(reg, s_word)
             print(item)
-            # try:
-            urla = str(item[0])
-            table.update(record_id=str(element_id), fields={'UrlProd': str(urla)})
-            table.update(record_id=str(element_id), fields={'SearchWord': str(s_word)})
-            await bot.send_message(message.from_user.id, 
-                    text=f'Вы ввели "{word}" и мы это сохранили.', reply_markup=REGION)
-            await state.finish()
-            # except:
-            #     print('Ошибка в input_word')
+            try:
+                urla = str(item[0])
+                table.update(record_id=str(element_id), fields={'UrlProd': str(urla)})
+                table.update(record_id=str(element_id), fields={'SearchWord': str(s_word)})
+                await bot.send_message(message.from_user.id, 
+                        text=f'Вы ввели "{word}" и мы это сохранили.', reply_markup=REGION)
+                await state.finish()
+            except:
+                print('Ошибка в input_word')
 
 @dp.callback_query_handler(text='start_search')
 async def search_go(message: types.Message):
