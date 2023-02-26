@@ -85,7 +85,9 @@ async def input_word(message: types.Message, state=FSMContext):
                         text=f'Вы ввели "{word}" и мы это сохранили.', reply_markup=REGION)
                 await state.finish()
             except:
-                print('Ошибка в input_word')
+                await bot.send_message(message.from_user.id, text=f'По Вашему запросу "{s_word}" объявлений НЕ НАЙДЕНО.\n\n\
+Измените запрос.', reply_markup=START)
+                await state.finish()
 
 @dp.callback_query_handler(text='start_search')
 async def search_go(message: types.Message):
