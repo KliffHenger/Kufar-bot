@@ -247,7 +247,8 @@ async def message_for_all(message: types.Message):
         id_tg = all_table[index]['fields']['UserTGID']
         await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
 Из-за этого все активные отслеживания были остановленны.\n\n\
-Для их перезапуска используйте соответствующие пункты меню.', reply_markup=MENU)
+Для их перезапуска используйте соответствующие пункты меню.\n\
+Так же, для увеличения точности отслеживания следует выбирать свой регион. (Со старта указывается "Вся Беларусь")', reply_markup=MENU)
         
 
 @dp.callback_query_handler(text='menu')
