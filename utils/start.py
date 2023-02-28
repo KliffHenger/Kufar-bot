@@ -118,12 +118,14 @@ async def search_go(message: types.Message):
                             try:
                                 urla = str(item[0])
                                 price = str(item[1])
+                                img = str(item[2])
                                 table.update(record_id=str(record_id), fields={'UrlProd': urla})
                                 table.update(record_id=str(record_id), fields={'PriceProd': price})
                                 table.update(record_id=str(record_id), fields={'JobName': name_sched})
                                 await bot.send_message(int(tg_id), 
-                                                    text=f'Первый найденый товар - {urla}\nЦена - {price}\nКогда появится еще, то сообщение придёт автоматически.', 
-                                                    reply_markup=STOP)
+                                                    text=f"Первый найденый товар - {urla}\nЦена - {price}\n\
+Когда появится еще, то сообщение придёт автоматически.\n\n{img}",
+                                                    reply_markup=STOP, parse_mode='HTML')
                                 print(name_sched)
                                 mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
                                 print(mess_bd)
@@ -209,10 +211,10 @@ async def send_message_prod(mess_bd):
                     item = get_item(reg, s_word)
                     urla = str(item[0])
                     price = str(item[1])
-
+                    img = str(item[2])
                     table.update(record_id=str(record_id), fields={'UrlProd': str(urla)})
                     table.update(record_id=str(record_id), fields={'PriceProd': str(price)})
-                    await bot.send_message(int(tg_id), text=f'Ссылка на товар - {urla}\nЦена - {price}', reply_markup=STOP)
+                    await bot.send_message(int(tg_id), text=f'Ссылка на товар - {urla}\nЦена - {price}\n\n{img}', reply_markup=STOP)
                 else:
                     print(f'Нет новых товаров для - {tg_id}')
 
@@ -250,7 +252,8 @@ async def message_for_all(message: types.Message):
         await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
 Из-за этого все активные отслеживания были остановленны.\n\n\
 Для их перезапуска используйте соответствующие пункты меню.\n\
-Так же, для увеличения точности отслеживания следует выбирать свой регион. (Со старта указывается "Вся Беларусь")', reply_markup=MENU)
+Так же, для увеличения точности отслеживания следует выбирать свой регион. (Со старта указывается "Вся Беларусь").\n\
+Тепер не обязательно переходить по ссылке на товар, ведь фото товара - гораздо информативнее.', reply_markup=MENU)
         
 
 @dp.callback_query_handler(text='menu')
