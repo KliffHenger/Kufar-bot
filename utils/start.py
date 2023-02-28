@@ -249,11 +249,15 @@ async def message_for_all(message: types.Message):
     all_table = table.all()
     for index in range(len(all_table)):
         id_tg = all_table[index]['fields']['UserTGID']
-        await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
+        try:
+            await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
 Из-за этого все активные отслеживания были остановленны.\n\n\
 Для их перезапуска используйте соответствующие пункты меню.\n\
 Так же, для увеличения точности отслеживания следует выбирать свой регион. (Со старта указывается "Вся Беларусь").\n\
 Тепер не обязательно переходить по ссылке на товар, ведь фото товара - гораздо информативнее.', reply_markup=MENU)
+            print(id_tg+' - получил')
+        except:
+            pass
         
 
 @dp.callback_query_handler(text='menu')
