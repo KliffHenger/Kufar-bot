@@ -8,7 +8,7 @@ from config import bot, dp
 from .parsing import urlify, get_item
 from keyboards.inline_menu import START, MENU, GO, STOP, ALL_MENU, REGION
 from aiogram.utils.markdown import hlink
-# from datetime import datetime, timedelta
+from datetime import datetime
 
 
 async def start_bot(message: types.Message):
@@ -48,7 +48,9 @@ async def set_search(message: types.Message):
                 and all_table[index]['fields']['DayLife'] != '0':
             try:
                 job_name = all_table[index]['fields']['JobName']
+                # record_id = all_table[index]['id']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
+                # table.update(record_id=str(record_id), fields={'JobName': 'None'})
             except:
                 pass
             await bot.send_message(message.from_user.id, f"Введи название товара (напр. - стиральная машина) для отслеживания:")
@@ -57,7 +59,9 @@ async def set_search(message: types.Message):
                 and all_table[index]['fields']['DayLife'] == '0':
             try:
                 job_name = all_table[index]['fields']['JobName']
+                # record_id = all_table[index]['id']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
+                # table.update(record_id=str(record_id), fields={'JobName': 'None'})
             except:
                 pass
             await bot.send_message(message.from_user.id, text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
@@ -119,18 +123,17 @@ async def search_go(message: types.Message):
                                 urla = str(item[0])
                                 price = str(item[1])
                                 img = str(item[2])
+                                
                                 table.update(record_id=str(record_id), fields={'UrlProd': urla})
                                 table.update(record_id=str(record_id), fields={'PriceProd': price})
                                 table.update(record_id=str(record_id), fields={'JobName': name_sched})
-                                await bot.send_message(int(tg_id), 
-                                                    text=f"Первый найденый товар - {urla}\nЦена - {price}\n\
-Когда появится еще, то сообщение придёт автоматически.\n\n{img}",
-                                                    reply_markup=STOP, parse_mode='HTML')
+                                msg_text=f"Первый найденый товар - {urla}\nЦена - {price}\n\
+Когда появится еще, то сообщение придёт автоматически."
+                                await bot.send_photo(int(tg_id), photo=img, caption=msg_text, reply_markup=STOP, parse_mode='HTML')
                                 print(name_sched)
                                 mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
-                                print(mess_bd)
-                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, 
-                                                            kwargs={'mess_bd': mess_bd}, misfire_grace_time=3)
+                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, 
+                                                            kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
                                 globals()[name_sched].start()
                                 globals()[name_sched].print_jobs()
                             except:
@@ -214,9 +217,10 @@ async def send_message_prod(mess_bd):
                     img = str(item[2])
                     table.update(record_id=str(record_id), fields={'UrlProd': str(urla)})
                     table.update(record_id=str(record_id), fields={'PriceProd': str(price)})
-                    await bot.send_message(int(tg_id), text=f'Ссылка на товар - {urla}\nЦена - {price}\n\n{img}', reply_markup=STOP)
+                    msg_text=f'Ссылка на товар - {urla}\nЦена - {price}'
+                    await bot.send_photo(int(tg_id), photo=img, caption=msg_text, reply_markup=STOP, parse_mode='HTML')
                 else:
-                    print(f'Нет новых товаров для - {tg_id}')
+                    print(f'{datetime.now()} Нет новых товаров для - {tg_id}')
 
 
 # async def search_stop(message: types.Message):
@@ -238,9 +242,11 @@ async def search_stop(message: types.Message):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
             try:
                 job_name = all_table[index]['fields']['JobName']
+                # record_id = all_table[index]['id']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
                 await bot.send_message(message.from_user.id, 
                     text=f'Отслеживание отключено.', reply_markup=MENU)
+                # table.update(record_id=str(record_id), fields={'JobName': 'None'})
             except:
                 pass
             

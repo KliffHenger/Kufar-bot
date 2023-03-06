@@ -13,6 +13,8 @@ async def region_select(message: types.Message):
     all_table = table.all()
     for index in range(len(all_table)):
         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
+            # record_id = all_table[index]['id']
+            # table.update(record_id=str(record_id), fields={'JobName': 'None'})
             try:
                 job_name = all_table[index]['fields']['JobName']
                 globals()[job_name].shutdown(wait=False) # отключение планировщика
