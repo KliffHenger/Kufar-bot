@@ -132,7 +132,9 @@ async def search_go(message: types.Message):
                                 await bot.send_photo(int(tg_id), photo=img, caption=msg_text, reply_markup=STOP, parse_mode='HTML')
                                 print(name_sched)
                                 mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
-                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, 
+                                # globals()[name_sched].add_job(send_message_prod, trigger='interval', seconds=5, # строчка для тестов
+                                                            # kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
+                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, # рабочая строчка
                                                             kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
                                 globals()[name_sched].start()
                                 globals()[name_sched].print_jobs()
@@ -219,7 +221,8 @@ async def send_message_prod(mess_bd):
                     table.update(record_id=str(record_id), fields={'PriceProd': str(price)})
                     msg_text=f'Ссылка на товар - {urla}\nЦена - {price}'
                     await bot.send_photo(int(tg_id), photo=img, caption=msg_text, reply_markup=STOP, parse_mode='HTML')
-                else:
+                elif all_table[index]['fields']['UserTGID'] == str(tg_id) \
+                    and all_table[index]['fields']['UrlProd'] == new_url:
                     print(f'{datetime.now()} Нет новых товаров для - {tg_id}')
 
 
@@ -256,7 +259,8 @@ async def message_for_all(message: types.Message):
     for index in range(len(all_table)):
         id_tg = all_table[index]['fields']['UserTGID']
         try:
-            await bot.send_message(int(id_tg), text=f'Мы обновили нашего Бота.\n\
+            await bot.send_message(int(id_tg), text=f'Извините за беспокойство.\n\
+Мы активно работаем над улучшениями и обновили нашего Бота.\n\
 Из-за этого все активные отслеживания были остановленны.\n\n\
 Для их перезапуска используйте соответствующие пункты меню.\n\
 Так же, для увеличения точности отслеживания следует выбирать свой регион. (Со старта указывается "Вся Беларусь").\n\

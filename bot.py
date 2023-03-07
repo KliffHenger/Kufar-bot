@@ -24,9 +24,12 @@ async def every_day():
                 table.update(record_id=str(record_id), fields={'JobName': 'None'})
             except:
                 pass
-            await bot.send_message(int(tg_id), text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
+            try:
+                await bot.send_message(int(tg_id), text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
 абонентской платы в размере - 20 BYN (за 30 дней).\n\
 Для уплаты или обсуждения суммы необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
+            except:
+                pass
 
 
 async def on_startup(_):
