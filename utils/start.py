@@ -132,6 +132,7 @@ async def search_go(message: types.Message):
                                 await bot.send_photo(int(tg_id), photo=img, caption=msg_text, reply_markup=STOP, parse_mode='HTML')
                                 print(name_sched)
                                 mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
+                                print(mess_bd)
                                 # globals()[name_sched].add_job(send_message_prod, trigger='interval', seconds=5, # строчка для тестов
                                                             # kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
                                 globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, # рабочая строчка
@@ -153,51 +154,6 @@ async def search_go(message: types.Message):
 Для уплаты необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
 
 
-# async def search_go(message: types.Message):
-#     all_table = table.all()
-#     for index in range(len(all_table)):
-#         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
-#             try:
-#                 job_name = all_table[index]['fields']['JobName']
-#                 globals()[job_name].shutdown(wait=False) # отключение планировщика
-#             except:
-#                 pass
-#     global record_id
-#     global tg_id
-#     tg_id, record_id = '', ''
-#     tg_id = str(message.from_user.id)
-#     for index in range(len(all_table)):
-#         if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
-#             old_url = all_table[index]['fields']['UrlProd']
-#             s_word = all_table[index]['fields']['SearchWord']
-#             reg = all_table[index]['fields']['Region']
-#             for index in range(len(all_table)):
-#                 if all_table[index]['fields']['UserTGID'] == str(message.from_user.id):
-#                     record_id = all_table[index]['id']
-#                     name_sched = 'sched'+str(message.from_user.id)
-#                     globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
-#                     item = get_item(reg, s_word)
-#                     try:
-#                         urla = str(item[0])
-#                         price = str(item[1])
-#                         table.update(record_id=str(record_id), fields={'UrlProd': urla})
-#                         table.update(record_id=str(record_id), fields={'PriceProd': price})
-#                         table.update(record_id=str(record_id), fields={'JobName': name_sched})
-#                         await bot.send_message(int(tg_id), text=f'Первый найденый товар - {urla}\nЦена - {price}\nКогда появится еще, то придёт сообщение.')
-#                         print(name_sched)
-#                         mess_bd = {'tg_id': str(message.from_user.id), 'record_id': record_id}
-#                         print(mess_bd)
-#                         globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, 
-#                                                       kwargs={'mess_bd': mess_bd}, misfire_grace_time=3)
-#                         globals()[name_sched].start()
-#                         globals()[name_sched].print_jobs()
-#                     except:
-#                         await bot.send_message(int(tg_id), text=f'По Вашему запросу "{s_word}" объявлений НЕ НАЙДЕНО.\n\n\
-# Используйте команду /set_search - чтобы изменить запрос.')
-                        
-
-
-
 async def send_message_prod(mess_bd):
     tg_id = mess_bd['tg_id']
     record_id = mess_bd['record_id']
@@ -208,6 +164,7 @@ async def send_message_prod(mess_bd):
             s_word = all_table[index]['fields']['SearchWord']
             reg = all_table[index]['fields']['Region']
             item = get_item(reg, s_word)
+            print(item)
             new_url = str(item[0])
             for index in range(len(all_table)):
                 if all_table[index]['fields']['UserTGID'] == str(tg_id) \
@@ -268,6 +225,22 @@ async def message_for_all(message: types.Message):
             print(id_tg+' - получил')
         except:
             pass
+
+async def start_job_for_all(message: types.Message):
+    all_table = table.all()
+    for index in range(len(all_table)):
+        if all_table[index]['fields']['DayLife'] != '0' and all_table[index]['fields']['JobName'] != 'None':
+            record_id = all_table[index]['id']
+            name_sched = all_table[index]['fields']['JobName']
+            tg_id = all_table[index]['fields']['UserTGID']
+            mess_bd = {'tg_id': tg_id, 'record_id': record_id}
+            globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
+            # globals()[name_sched].add_job(send_message_prod, trigger='interval', seconds=5, # строчка для тестов
+                                        # kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
+            globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, # рабочая строчка
+                                        kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
+            globals()[name_sched].start()
+            globals()[name_sched].print_jobs()
         
 
 @dp.callback_query_handler(text='menu')
@@ -284,7 +257,6 @@ def register_handlers_start(dp: Dispatcher):
     dp.register_message_handler(help_message, Command('help'))
     dp.register_message_handler(get_menu, Command('menu'))
     dp.register_message_handler(input_word, state=Search.search_word)
-    # dp.register_message_handler(search_go, Command('go_search'))
     dp.register_message_handler(send_message_prod, commands=['40000_monkeys_put_a_banana_up_their_butt'])
-    # dp.register_message_handler(search_stop, Command('stop_search'))
+    dp.register_message_handler(start_job_for_all, Command('1786314start_job_for_all'))
     dp.register_message_handler(message_for_all, Command('1786314send_all_user'))

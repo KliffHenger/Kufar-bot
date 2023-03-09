@@ -25,7 +25,7 @@ def get_item(region, keyword):
         img = find_img.img['data-src']
         return x, y, img
     except:
-        print('Фигня в Парсере')
+        print(f'Парсер не понял - {urla}')
 
 # https://www.kufar.by/l/r~shchuchin?cmp=0&ot=1&query=часы&sort=lst.d
 # print(get_item('l/r~shchuchin', 'часы'))

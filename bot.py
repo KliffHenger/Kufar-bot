@@ -35,7 +35,8 @@ async def every_day():
 async def on_startup(_):
     print('Everything started, but that does not mean anything.')
     sched = AsyncIOScheduler(timezone="Europe/Minsk")
-    sched.add_job(every_day, trigger='interval', days=1, misfire_grace_time=60)
+    # sched.add_job(every_day, trigger='interval', minutes=1, misfire_grace_time=60) # строчка для тестов
+    sched.add_job(every_day, trigger='interval', days=1, misfire_grace_time=60) # рабочая строчка
     sched.start()
     sched.print_jobs()
     
