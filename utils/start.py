@@ -135,7 +135,7 @@ async def search_go(message: types.Message):
                                 print(mess_bd)
                                 # globals()[name_sched].add_job(send_message_prod, trigger='interval', seconds=5, # строчка для тестов
                                                             # kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
-                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, # рабочая строчка
+                                globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, # рабочая строчка (интервал больше будет пропускать  некоторые новые обьявления между опровами (проблема IPHONE в Минске))
                                                             kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
                                 globals()[name_sched].start()
                                 globals()[name_sched].print_jobs()
@@ -241,7 +241,7 @@ async def start_job_for_all(message: types.Message):
             globals()[name_sched] = AsyncIOScheduler(timezone="Europe/Minsk")
             # globals()[name_sched].add_job(send_message_prod, trigger='interval', seconds=5, # строчка для тестов
                                         # kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
-            globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=3, # рабочая строчка
+            globals()[name_sched].add_job(send_message_prod, trigger='interval', minutes=1, # рабочая строчка
                                         kwargs={'mess_bd': mess_bd}, misfire_grace_time=10)
             globals()[name_sched].start()
             globals()[name_sched].print_jobs()

@@ -17,13 +17,14 @@ def get_item(region, keyword):
     # print(soup)
     try:
         find_href = soup.find('section')# .select('a', class_='styles_wrapper__IMYdY')
+        # print(find_href)
         # find_price = soup.find('p', class_='styles_price__tiO8k').select('span')
         find_price = soup.find('section').select('span')
         find_img = soup.find('section')
         xx = find_href.a['href'] # https://www.kufar.by/item/201137193?searchId=0925bf5518aa56ccd9871e69b1d739940c5a
         x = xx[:-46]
         y = find_price[0].text
-        img = find_img.img['data-src']
+        img = find_img.img['src']
         return x, y, img
     except:
         print(f'Парсер не понял - {urla}')
