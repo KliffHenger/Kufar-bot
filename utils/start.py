@@ -65,7 +65,7 @@ async def set_search(message: types.Message):
             except:
                 pass
             await bot.send_message(message.from_user.id, text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
-абонентской платы в размере - 20 BYN (за 30 дней).\n\
+абонентской платы в размере - 10 BYN (за 30 дней).\n\
 Для уплаты необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
         
 
@@ -150,7 +150,7 @@ async def search_go(message: types.Message):
             except:
                 pass
             await bot.send_message(message.from_user.id, text=f'Дальнейшее использование нашего сервиса возможно только после уплаты \
-абонентской платы в размере - СКОЛЬКО СЧИТАЕТЕ НУЖНЫМ (за 30 дней).\n\
+абонентской платы в размере - 10 BYN (за 30 дней).\n\
 Для уплаты необходимо связаться с автором, перейдя в пункт меню /help', reply_markup=MENU)
 
 
